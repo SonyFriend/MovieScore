@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns 
 import csv
 
-df = open('C:/Users/user/Downloads/統諮FINAL/movie_4381.csv')
+df = open('C:/Users/user/Downloads/pythonCode/movie_4381.csv')
 #with open('C:\\Users\\user\\Downloads\\統諮FINAL\\movie_4381.csv',"r") as data:
 #	movie=csv.reader(data)
 movie=pd.read_csv(df)
@@ -18,11 +18,11 @@ tree=tree.fit(x_train,y_train)
 from sklearn.tree import export_graphviz
 from sklearn.externals.six import StringIO
 import pydotplus 
-
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
 with open("tree.dot", 'w') as f:
  f = export_graphviz(tree, out_file=f)
-
-dot_data=export_graphviz(tree,out_file=None,feature_names=['runtime','revenue','budget','popularity'],filled=True,rounded=True,special_characters=True)
+ dot_data=export_graphviz(tree,out_file=None,feature_names=['runtime','revenue','budget','popularity'],filled=True,rounded=True,special_characters=True)
 
 y=y_test['vote_average']
 predict=tree.predict(x_test)
